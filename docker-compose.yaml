@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    networks:
+      - minecraft-net
+    environment:
+      EULA: "TRUE"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      # attach a directory relative to the directory containing this compose file
+      - ./minecraft-data:/data
+
+#configs:
+#  httpd-config:
+#    external: true
+
+#secrets:
+#  server-certificate:
+#    external: true
+
+networks:
+  # The presence of these objects is sufficient to define them
+  minecraft-net: {}
